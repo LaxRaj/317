@@ -1,0 +1,35 @@
+/* Global reset */
+* {
+    padding: 0;
+    margin: 0;
+}
+
+/* Body styling */
+body {
+    background-color: #f8f8f8;
+    height: 100vh;
+}
+
+/* Wrapper styling */
+.wrapper {
+    width: 45%;
+    box-shadow: 5px 0 rgb(112, 112, 27) inset, 
+                3px 0 2px rgb(114, 99, 99);
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Paragraph styling */
+p {
+    height: 25%;
+    padding: 1rem;
+}
+
+/* Hover effect */
+.wrapper:hover {
+    box-shadow: none;
+    border-bottom: 1px dotted;
+}
