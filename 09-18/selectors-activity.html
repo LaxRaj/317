@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Selectors Playground</title>
+    <style>
+        /* TODO: your CSS goes here */
+        
+        /* Task 1 — Element (type) selector */
+        /* Goal: Make all headings (h1) a different color and center them */
+        h1 {
+            color: #4c3cff;
+            text-align: center;
+        }
+
+        /* Task 2 — Class selector */
+        /* Goal: Give every .card a soft border, padding, and rounded corners. Also add a tiny shadow */
+        .card {
+            border: 1px solid #e4e4e7;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            margin: 1rem 0;
+        }
+
+        /* Task 3 — ID selector */
+        /* Goal: Make the #welcome section stand out with a subtle background and larger text for its first paragraph only */
+        #welcome {
+            background: #f5f7ff;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+        }
+        #welcome p {
+            font-size: 1.1rem;
+        }
+
+        /* Task 4 — The :first-child pseudo-class */
+        /* Goal: In the product list under Shop, style only the first product differently */
+        #shop .products li:first-child {
+            background: #fff7e6;
+            font-weight: 600;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+        }
+
+        /* Task 5 — Combine selectors */
+        /* Goal: Style only .tag elements inside a .card to look like rounded chips */
+        .card .tag {
+            display: inline-block;
+            padding: 0.15rem 0.5rem;
+            border-radius: 999px;
+            background: #eef2ff;
+            font-size: 0.8rem;
+            margin: 0.25rem;
+        }
+
+        /* Task 6 — Buttons hover */
+        /* Goal: Make .btn change appearance on hover */
+        .btn {
+            transition: all 160ms ease;
+            padding: 0.5rem 1rem;
+            border: 1px solid #ccc;
+            border-radius: 0.25rem;
+            background: #f8f9fa;
+            cursor: pointer;
+        }
+        .btn:hover {
+            filter: brightness(0.92);
+            cursor: pointer;
+            background: #e9ecef;
+        }
+
+        /* ⚡ Challenges (spicy, but tasty) */
+
+        /* Attribute selector: Color-code challenges by difficulty */
+        .challenge[data-difficulty="easy"] {
+            background: #ecfdf5;
+            border-left: 4px solid #10b981;
+        }
+        .challenge[data-difficulty="medium"] {
+            background: #fff7ed;
+            border-left: 4px solid #f59e0b;
+        }
+        .challenge[data-difficulty="hard"] {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+        }
+
+        /* Direct-child combinator (>): Style only h3 that are direct children of .card */
+        .card > h3 {
+            text-decoration: underline;
+            color: #374151;
+        }
+
+        /* Adjacent-sibling combinator (+): Add extra spacing only when a .note immediately follows a .card */
+        .card + .note {
+            margin-top: 1rem;
+            padding: 0.5rem;
+            background: #fef3c7;
+            border-radius: 0.25rem;
+        }
+
+        /* Negation (:not) + groups: Dim all list items in #shop .products except the first one */
+        #shop .products li:not(:first-child) {
+            opacity: 0.85;
+        }
+
+        /* Nth-child: Zebra stripe the review list */
+        #about .testimonials li:nth-child(even) {
+            background: #fafafa;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+        }
+
+        /* Additional styling for better presentation */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #ffffff;
+        }
+
+        .featured {
+            background: #fef3c7;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .note {
+            font-style: italic;
+            color: #6b7280;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+        }
+
+        section {
+            margin: 2rem 0;
+        }
+
+        article {
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS Selectors Playground</h1>
+    
+    <section id="welcome">
+        <h2>Welcome to Our Store!</h2>
+        <p>This is the first paragraph in the welcome section with larger text.</p>
+        <p>This is a regular paragraph in the welcome section.</p>
+    </section>
+
+    <section id="about">
+        <h2>About Us</h2>
+        <div class="card">
+            <h3>Our Story</h3>
+            <p>We've been serving customers for over 20 years with quality products and excellent service.</p>
+            <span class="tag">Established</span>
+            <span class="tag">Trusted</span>
+        </div>
+        
+        <div class="note">Note: We're always looking to improve our services.</div>
+        
+        <div class="card">
+            <h3>Customer Reviews</h3>
+            <ul class="testimonials">
+                <li>"Amazing service and quality products!" - Sarah M.</li>
+                <li>"Fast shipping and great customer support." - John D.</li>
+                <li>"Highly recommend this store to everyone." - Maria L.</li>
+                <li>"Best shopping experience I've had online." - David K.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="shop">
+        <h2>Shop</h2>
+        <div class="card">
+            <h3>Featured Products</h3>
+            <ul class="products">
+                <li><span class="featured">FEATURED</span> Premium Wireless Headphones - $199</li>
+                <li>Smart Watch Series 5 - $299</li>
+                <li>Bluetooth Speaker - $89</li>
+                <li>Phone Case Set - $25</li>
+                <li>USB-C Cable Pack - $15</li>
+            </ul>
+        </div>
+        
+        <button class="btn">Add to Cart</button>
+        <button class="btn">View Details</button>
+        <button class="btn">Add to Wishlist</button>
+    </section>
+
+    <section>
+        <h2>Challenges</h2>
+        <div class="challenge" data-difficulty="easy">
+            <h3>Easy Challenge</h3>
+            <p>This is an easy challenge with green styling.</p>
+        </div>
+        
+        <div class="challenge" data-difficulty="medium">
+            <h3>Medium Challenge</h3>
+            <p>This is a medium challenge with orange styling.</p>
+        </div>
+        
+        <div class="challenge" data-difficulty="hard">
+            <h3>Hard Challenge</h3>
+            <p>This is a hard challenge with red styling.</p>
+        </div>
+    </section>
+
+    <article>
+        <h2>CSS Selector Practice</h2>
+        <p>This page demonstrates various CSS selectors in action. Try modifying the styles in the &lt;style&gt; block to see how different selectors work!</p>
+        
+        <div class="card">
+            <h3>Quick Reference</h3>
+            <p>Element: <code>h1</code> | Class: <code>.card</code> | ID: <code>#welcome</code> | Pseudo-class: <code>:first-child</code></p>
+            <span class="tag">CSS</span>
+            <span class="tag">Selectors</span>
+            <span class="tag">Practice</span>
+        </div>
+    </article>
+</body>
+</html>
