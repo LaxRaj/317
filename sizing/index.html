@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Sizing & Selectors Activity</title>
+    <style>
+        /* Task 1: Percentage-based Padding & Margin */
+        .parent {
+            width: 400px;
+            background: lightblue;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .child {
+            margin-top: 10%;        /* 10% of parent's WIDTH, not height */
+            padding: 5%;            /* 5% of parent's width */
+            background: coral;
+        }
+
+        /* Task 2: Viewport Units (vw/vh) */
+        .hero {
+            width: 50vw;            /* Half viewport width */
+            height: 30vh;           /* 30% viewport height */
+            background: mediumseagreen;
+            color: white;
+            font-size: 5vh;         /* Scales with viewport height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        /* Task 3: em vs rem */
+        html { 
+            font-size: 16px;        /* Root font size for rem */
+        }
+
+        .outer { 
+            font-size: 20px;        /* Parent font size for em */
+            background: #f0f0f0;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .inner {
+            font-size: 1.5em;       /* 1.5 × 20px = 30px (parent) */
+            margin: 2rem;           /* 2 × 16px = 32px (root) */
+            background: #e0e0e0;
+            padding: 15px;
+        }
+
+        /* Task 4: Child Combinator Selector (>) */
+        .menu {
+            list-style: none;
+        }
+
+        .menu > li {
+            color: red;             /* Direct children only */
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+        }
+
+        .menu li li {
+            color: blue;            /* Nested items */
+            margin: 5px 0;
+            padding: 5px 10px;
+            background: #e3f2fd;
+        }
+
+        .menu ul {
+            margin-left: 20px;
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Task 1: Percentage-based Padding & Margin</h1>
+    <div class="parent">
+        <div class="child">Child</div>
+    </div>
+
+    <h1>Task 2: Viewport Units (vw/vh)</h1>
+    <div class="hero">Hello, Viewport!</div>
+
+    <h1>Task 3: em vs rem</h1>
+    <div class="outer">
+        Outer text
+        <div class="inner">Inner text</div>
+    </div>
+
+    <h1>Task 4: Child Combinator Selector (>)</h1>
+    <ul class="menu">
+        <li>Home</li>
+        <li>About
+            <ul>
+                <li>Team</li>
+                <li>History</li>
+            </ul>
+        </li>
+        <li>Services
+            <ul>
+                <li>Web Design</li>
+                <li>Development</li>
+            </ul>
+        </li>
+        <li>Contact</li>
+    </ul>
+</body>
+</html>
