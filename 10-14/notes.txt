@@ -1,0 +1,6 @@
+  This is a SAMPLE text file
+  with MIXED CASE content
+  and   extra   spaces   everywhere
+  Some lines have trailing spaces   
+  And some have leading spaces
+  FINAL line with CAPS
