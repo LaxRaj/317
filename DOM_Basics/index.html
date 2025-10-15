@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>DOM Activity: Color Buttons</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    /* Minimal styles so you can "see" things */
+    :root { 
+      --gap: 0.75rem; 
+      --btn-pad: 0.6rem 0.9rem; 
+      --bg: white; /* CSS variable for background */
+    }
+    body { 
+      font-family: system-ui, sans-serif; 
+      line-height: 1.4; 
+      margin: 2rem; 
+      transition: background-color 200ms ease, background 200ms ease;
+      background: var(--bg); /* Use CSS variable */
+    }
+    #controls { 
+      display: flex; 
+      gap: var(--gap); 
+      flex-wrap: wrap; 
+      margin-block: 1rem; 
+    }
+    button { 
+      padding: var(--btn-pad); 
+      border-radius: 0.5rem; 
+      border: 1px solid #ccc; 
+      cursor: pointer; 
+      transition: all 200ms ease;
+    }
+    button:focus-visible { 
+      outline: 3px solid #000; 
+      outline-offset: 2px; 
+    }
+    /* Challenge 1: Active style */
+    button.active { 
+      border: 2px solid black; 
+      font-weight: 700; 
+      background-color: #f0f0f0;
+    }
+    /* Demo highlight class */
+    .highlight {
+      background-color: #ffeb3b !important;
+      border: 2px solid #ff9800;
+      font-weight: bold;
+    }
+    /* Demo section styling */
+    .demo-section {
+      margin: 2rem 0;
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 0.5rem;
+      background-color: #f9f9f9;
+    }
+    .demo-section h3 {
+      margin-top: 0;
+      color: #333;
+    }
+    .info {
+      background-color: #e3f2fd;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin: 1rem 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>DOM Activity: Create Buttons & Paint the Page</h1>
+  <p id="description">We will create three buttons via JS and change the page background.</p>
+
+  <div id="controls" aria-label="Background color controls"></div>
+
+  <div class="demo-section">
+    <h3>🎯 Basic Functionality</h3>
+    <p>Click the buttons above to change the background color!</p>
+    <div class="info">
+      <strong>Keyboard Shortcuts:</strong> Press P (pink), R (red), Y (yellow), or Space (random)
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h3>🔍 DOM Traversal Demo</h3>
+    <p>Open the browser console to see DOM traversal examples!</p>
+    <div id="traversal-demo">
+      <p>This is a paragraph inside the traversal demo div.</p>
+      <span>This is a span element.</span>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h3>📚 DOM Concepts Demo</h3>
+    <div id="concepts-demo">
+      <button id="text-demo">Click to change text</button>
+      <button id="class-demo">Click to toggle class</button>
+      <button id="attribute-demo">Click to change attribute</button>
+      <div id="demo-output">Demo output will appear here</div>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

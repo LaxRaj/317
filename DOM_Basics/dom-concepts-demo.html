@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Concepts Deep Dive</title>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            line-height: 1.6;
+            margin: 2rem;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .demo-section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background-color: #fafafa;
+        }
+        .demo-section h3 {
+            margin-top: 0;
+            color: #333;
+            border-bottom: 2px solid #007acc;
+            padding-bottom: 0.5rem;
+        }
+        button {
+            padding: 0.5rem 1rem;
+            margin: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            background: white;
+            transition: all 0.2s ease;
+        }
+        button:hover {
+            background: #f0f0f0;
+        }
+        .output {
+            background: #f8f8f8;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+            border-left: 4px solid #007acc;
+            font-family: monospace;
+        }
+        .highlight {
+            background-color: #ffeb3b;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+        }
+        .node-tree {
+            font-family: monospace;
+            background: #f0f0f0;
+            padding: 1rem;
+            border-radius: 4px;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 DOM Concepts Deep Dive</h1>
+        
+        <div class="demo-section">
+            <h3>1. Node vs Element</h3>
+            <p>Understanding the difference between DOM nodes and elements:</p>
+            <button onclick="showNodeTypes()">Show Node Types</button>
+            <div id="node-output" class="output"></div>
+        </div>
+
+        <div class="demo-section">
+            <h3>2. Element Selection Methods</h3>
+            <p>Different ways to select elements in the DOM:</p>
+            <button onclick="showSelectionMethods()">Show Selection Methods</button>
+            <div id="selection-output" class="output"></div>
+        </div>
+
+        <div class="demo-section">
+            <h3>3. DOM Traversal</h3>
+            <p>Navigating the DOM tree:</p>
+            <div id="traversal-container">
+                <p>Parent paragraph</p>
+                <div>
+                    <span>Child span</span>
+                    <button>Child button</button>
+                </div>
+            </div>
+            <button onclick="showTraversal()">Show Traversal</button>
+            <div id="traversal-output" class="output"></div>
+        </div>
+
+        <div class="demo-section">
+            <h3>4. Creating and Modifying Elements</h3>
+            <p>Dynamically creating and modifying DOM elements:</p>
+            <button onclick="createElement()">Create New Element</button>
+            <button onclick="modifyElement()">Modify Element</button>
+            <button onclick="removeElement()">Remove Element</button>
+            <div id="element-demo"></div>
+        </div>
+
+        <div class="demo-section">
+            <h3>5. Event Handling</h3>
+            <p>Different ways to handle events:</p>
+            <button id="event-btn">Click Me</button>
+            <button onclick="addEventListeners()">Add Event Listeners</button>
+            <div id="event-output" class="output"></div>
+        </div>
+
+        <div class="demo-section">
+            <h3>6. Style Manipulation</h3>
+            <p>Changing styles with JavaScript:</p>
+            <button onclick="changeStyles()">Change Styles</button>
+            <button onclick="toggleClass()">Toggle Class</button>
+            <div id="style-demo" style="padding: 1rem; border: 1px solid #ccc; margin: 1rem 0;">
+                Style Demo Element
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 1. Node vs Element Demo
+        function showNodeTypes() {
+            const output = document.getElementById('node-output');
+            const container = document.getElementById('traversal-container');
+            
+            let html = '<strong>Node Types in traversal-container:</strong><br>';
+            container.childNodes.forEach((node, index) => {
+                html += `${index}: ${node.nodeType} - ${node.nodeName}`;
+                if (node.nodeType === Node.TEXT_NODE) {
+                    html += ` (text: "${node.textContent.trim()}")`;
+                }
+                html += '<br>';
+            });
+            
+            html += '<br><strong>Element Children Only:</strong><br>';
+            Array.from(container.children).forEach((element, index) => {
+                html += `${index}: ${element.tagName}<br>`;
+            });
+            
+            output.innerHTML = html;
+        }
+
+        // 2. Selection Methods Demo
+        function showSelectionMethods() {
+            const output = document.getElementById('selection-output');
+            
+            let html = '<strong>Selection Methods:</strong><br>';
+            html += `querySelector('#event-btn'): ${document.querySelector('#event-btn').tagName}<br>`;
+            html += `getElementById('event-btn'): ${document.getElementById('event-btn').tagName}<br>`;
+            html += `querySelectorAll('button').length: ${document.querySelectorAll('button').length}<br>`;
+            html += `getElementsByTagName('button').length: ${document.getElementsByTagName('button').length}<br>`;
+            
+            output.innerHTML = html;
+        }
+
+        // 3. DOM Traversal Demo
+        function showTraversal() {
+            const output = document.getElementById('traversal-output');
+            const container = document.getElementById('traversal-container');
+            
+            let html = '<strong>DOM Traversal:</strong><br>';
+            html += `Parent: ${container.parentElement.tagName}<br>`;
+            html += `First child: ${container.firstElementChild.tagName}<br>`;
+            html += `Last child: ${container.lastElementChild.tagName}<br>`;
+            html += `Next sibling: ${container.nextElementSibling ? container.nextElementSibling.tagName : 'None'}<br>`;
+            html += `Previous sibling: ${container.previousElementSibling ? container.previousElementSibling.tagName : 'None'}<br>`;
+            
+            output.innerHTML = html;
+        }
+
+        // 4. Element Creation Demo
+        let elementCounter = 0;
+        
+        function createElement() {
+            const demo = document.getElementById('element-demo');
+            elementCounter++;
+            
+            const newDiv = document.createElement('div');
+            newDiv.textContent = `Dynamic Element ${elementCounter}`;
+            newDiv.style.cssText = 'background: lightblue; padding: 0.5rem; margin: 0.5rem 0; border-radius: 4px;';
+            newDiv.id = `dynamic-${elementCounter}`;
+            
+            demo.appendChild(newDiv);
+        }
+        
+        function modifyElement() {
+            const lastElement = document.querySelector('#element-demo div:last-child');
+            if (lastElement) {
+                lastElement.textContent += ' (Modified!)';
+                lastElement.style.backgroundColor = 'lightcoral';
+            }
+        }
+        
+        function removeElement() {
+            const lastElement = document.querySelector('#element-demo div:last-child');
+            if (lastElement) {
+                lastElement.remove();
+            }
+        }
+
+        // 5. Event Handling Demo
+        function addEventListeners() {
+            const btn = document.getElementById('event-btn');
+            const output = document.getElementById('event-output');
+            
+            // Remove existing listeners to avoid duplicates
+            btn.replaceWith(btn.cloneNode(true));
+            const newBtn = document.getElementById('event-btn');
+            
+            let clickCount = 0;
+            
+            newBtn.addEventListener('click', function() {
+                clickCount++;
+                output.innerHTML = `Button clicked ${clickCount} times!<br>Event type: click<br>Target: ${this.tagName}`;
+            });
+            
+            newBtn.addEventListener('mouseover', function() {
+                output.innerHTML += '<br>Mouse over event triggered!';
+            });
+            
+            newBtn.addEventListener('mouseout', function() {
+                output.innerHTML += '<br>Mouse out event triggered!';
+            });
+            
+            output.innerHTML = 'Event listeners added! Try clicking and hovering over the button.';
+        }
+
+        // 6. Style Manipulation Demo
+        function changeStyles() {
+            const demo = document.getElementById('style-demo');
+            const colors = ['lightblue', 'lightcoral', 'lightgreen', 'lightyellow'];
+            const currentBg = demo.style.backgroundColor;
+            const currentIndex = colors.indexOf(currentBg);
+            const nextIndex = (currentIndex + 1) % colors.length;
+            
+            demo.style.backgroundColor = colors[nextIndex];
+            demo.style.borderColor = colors[nextIndex];
+            demo.style.borderWidth = '3px';
+        }
+        
+        function toggleClass() {
+            const demo = document.getElementById('style-demo');
+            demo.classList.toggle('highlight');
+        }
+
+        // Initialize
+        console.log('DOM Concepts Demo loaded!');
+        console.log('Open the browser console to see additional information.');
+    </script>
+</body>
+</html>
