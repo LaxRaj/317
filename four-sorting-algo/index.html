@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Four Sorting Algorithms</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        code, pre {
+            font-family: 'Source Code Pro', monospace;
+        }
+        
+        header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #333;
+        }
+        
+        header h1 {
+            margin-bottom: 15px;
+        }
+        
+        header p {
+            font-size: 1.1em;
+            color: #555;
+        }
+        
+        main {
+            margin-bottom: 40px;
+        }
+        
+        .algorithm {
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid #6B2463;
+        }
+        
+        .algorithm h2 {
+            color: #6B2463;
+            margin-bottom: 15px;
+        }
+        
+        .algorithm p {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-top: 10px;
+        }
+        
+        code {
+            font-size: 0.9em;
+        }
+        
+        code.language-javascript {
+            color: #f8f8f2;
+        }
+        
+        footer {
+            background-color: #6B2463;
+            color: #FDB913;
+            font-weight: bold;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Introduction to Basic Sorting Algorithms</h1>
+        <p>This page provides basic information and JavaScript implementations of four fundamental sorting algorithms: Insertion Sort, Selection Sort, Merge Sort, and Quick Sort.</p>
+    </header>
+    
+    <main>
+        <!-- Insertion Sort Section -->
+        <div id="insertion-sort" class="algorithm">
+            <h2>Insertion Sort</h2>
+            <p>
+                Insertion sort is a simple sorting algorithm that builds the sorted
+                array one item at a time. It is much like sorting playing cards in
+                your hands.
+            </p>
+            <pre><code class="language-javascript">// Insertion Sort Implementation
+function insertionSort(arr) {
+    for (let i = 1; i < arr.length; i++) {
+        let key = arr[i];
+        let j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = key;
+    }
+    return arr;
+}</code></pre>
+        </div>
+        
+        <!-- Selection Sort Section -->
+        <div id="selection-sort" class="algorithm">
+            <h2>Selection Sort</h2>
+            <p>
+                Selection sort is a simple algorithm that repeatedly selects the smallest element from the unsorted portion and places it in the sorted portion.
+            </p>
+            <pre><code class="language-javascript">// Selection Sort Implementation
+function selectionSort(arr) {
+    for (let i = 0; i < arr.length - 1; i++) {
+        let minIndex = i;
+        for (let j = i + 1; j < arr.length; j++) {
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+        [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
+    }
+    return arr;
+}</code></pre>
+        </div>
+        
+        <!-- Merge Sort Section -->
+        <div id="merge-sort" class="algorithm">
+            <h2>Merge Sort</h2>
+            <p>
+                Merge sort is a divide-and-conquer algorithm that splits the array into halves, recursively sorts them, and then merges the sorted halves.
+            </p>
+            <pre><code class="language-javascript">// Merge Sort Implementation
+function mergeSort(arr) {
+    if (arr.length <= 1) return arr;
+
+    const mid = Math.floor(arr.length / 2);
+    const left = mergeSort(arr.slice(0, mid));
+    const right = mergeSort(arr.slice(mid));
+
+    return merge(left, right);
+}
+
+function merge(left, right) {
+    let result = [];
+    let i = 0, j = 0;
+
+    while (i < left.length && j < right.length) {
+        if (left[i] < right[j]) {
+            result.push(left[i]);
+            i++;
+        } else {
+            result.push(right[j]);
+            j++;
+        }
+    }
+
+    return result.concat(left.slice(i)).concat(right.slice(j));
+}</code></pre>
+        </div>
+        
+        <!-- Quick Sort Section -->
+        <div id="quick-sort" class="algorithm">
+            <h2>Quick Sort</h2>
+            <p>
+                Quick sort is a divide-and-conquer algorithm that selects a pivot element, partitions the array around the pivot, and recursively sorts the partitions.
+            </p>
+            <pre><code class="language-javascript">// Quick Sort Implementation
+function quickSort(arr) {
+    if (arr.length <= 1) return arr;
+
+    const pivot = arr[arr.length - 1];
+    const left = [];
+    const right = [];
+
+    for (let i = 0; i < arr.length - 1; i++) {
+        if (arr[i] < pivot) {
+            left.push(arr[i]);
+        } else {
+            right.push(arr[i]);
+        }
+    }
+
+    return [...quickSort(left), pivot, ...quickSort(right)];
+}</code></pre>
+        </div>
+    </main>
+    
+    <footer>
+        <p>© 2025 SF State University - Intro to Web Development</p>
+    </footer>
+</body>
+</html>
+
