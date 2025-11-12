@@ -1,0 +1,15 @@
+{
+  "name": "sqlite-node-demo",
+  "version": "1.0.0",
+  "description": "SQLite in Node.js demonstration",
+  "main": "animals-demo.js",
+  "scripts": {
+    "start": "node animals-demo.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sqlite3": "^5.1.6"
+  }
+}
+
